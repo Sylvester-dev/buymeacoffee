@@ -7,7 +7,7 @@ import "hardhat/console.sol";
 contract CoffeePortal {
     
     uint256 totalCoffee;
-    address public payable owner;
+    address payable public owner;
 
     event NewCoffee(
         address indexed from,
@@ -26,7 +26,7 @@ contract CoffeePortal {
     struct Coffee{
         address sender; //The address of user who want to send me coffee
         string message; //The message he want to attach
-        string timestamp; //Time transaction took place
+        uint256 timestamp; //Time transaction took place
         string name; //Name of the buyer
     }
 
@@ -39,17 +39,17 @@ contract CoffeePortal {
   }
 
 //return total coffee bought
- fuction getTotalCoffee() public view returns(uint256){
+ function getTotalCoffee() public view returns(uint256){
      return totalCoffee;
  }
 
  function buyCoffee(string memory _message, string memory _name, uint256 _amount) public payable{
-   uint256 cost = 0.01 ether;
+   uint256 cost = 0.001 ether;
    require(_amount>=cost,"Not enough fund payed");
    totalCoffee = totalCoffee + 1;
    coffee.push(Coffee(msg.sender,_message,block.timestamp,_name));
-   (bool success,)= owner.call{value: _amount}; //sending ether
+   (bool success,)= owner.call{value: _amount}(""); //sending ether
    require(success,"Transaction Failed");
-   emit(msg.sender,_message,block.timestamp,_name);
+   emit NewCoffee(msg.sender,_message,block.timestamp,_name);
  }
 }
