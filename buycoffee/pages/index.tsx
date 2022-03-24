@@ -7,6 +7,8 @@ import "react-toastify/dist/ReactToastify.css";
 import Head from "next/head";
 import abi from "../utils/CoffeePortal.json";
 
+declare var window: any
+
 export default function Home() {
 
   const contractAddress = "0xA5b719159cAb5bdB066DBE7d3D9820Bfa875119D";
