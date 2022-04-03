@@ -2,6 +2,8 @@
 import React, { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import { ethers } from "ethers";
+import { Framework } from "@superfluid-finance/sdk-core";
+import { ethers } from "ethers";
 import "react-toastify/dist/ReactToastify.css";
 
 import Head from "next/head";
